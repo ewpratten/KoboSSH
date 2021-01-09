@@ -16,3 +16,28 @@ The resulting ARM binary will be placed at `./dropbearmulti`
 ## Prebuilt binaries
 
 I keep some prebuild binaries on the [releases page](https://github.com/Ewpratten/KoboSSH/releases).
+
+## Kobo-side setup
+
+Dropbear needs somewhere to go on the system. I chose `/mnt/onboard/opt/dropbear`. With the binary copied over, the following commands will set up ssh keys for the device:
+
+```sh
+cd /mnt/onboard/opt/dropbear
+./dropbearmulti dropbearkey -t dss -f dss_key
+./dropbearmulti dropbearkey -t rsa -f rsa_key
+./dropbearmulti dropbearkey -t ecdsa -f ecdsa_key
+```
+
+The following command can be used to test dropbear:
+
+```sh
+/mnt/onboard/opt/dropbear/dropbearmulti dropbear -F -E -r /mnt/onboard/opt/dropbear/dss_key -r /mnt/onboard/opt/dropbear/rsa_key -r /mnt/onboard/opt/dropbear/ecdsa_key -B
+```
+
+To make dropbear start on boot, add the following line to `/opt/inetd.conf`:
+
+```text
+22 stream tcp nowait root /mnt/onboard/opt/dropbear/dropbearmulti dropbear -i -r /mnt/onboard/opt/dropbear/dss_key -r /mnt/onboard/opt/dropbear/rsa_key -r /mnt/onboard/opt/dropbear/ecdsa_key -B
+```
+
+Rebooting should start up an SSH server on the device.
