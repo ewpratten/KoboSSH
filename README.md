@@ -19,6 +19,8 @@ I keep some prebuild binaries on the [releases page](https://github.com/Ewpratte
 
 ## Kobo-side setup
 
+*This assumes you already have telnet access to the device*
+
 Dropbear needs somewhere to go on the system. I chose `/mnt/onboard/opt/dropbear`. With the binary copied over, the following commands will set up ssh keys for the device:
 
 ```sh
