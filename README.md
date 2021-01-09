@@ -1,4 +1,4 @@
-# KoboSSH ![Build library](https://github.com/Ewpratten/KoboSSH/workflows/Build%20library/badge.svg)
+# KoboSSH ![Build dropbear](https://github.com/Ewpratten/KoboSSH/workflows/Build%20dropbear/badge.svg)
 
 This repository contains the tools needed to compile [dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html) for the `arm-kobo-linux-gnueabihf` system (all recent [Kobo](https://www.kobo.com/) products). This binary is used for root shell access on Kobo devices which, in my case, is used to deploy and debug software on e-readers.
 
